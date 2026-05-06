@@ -83,9 +83,9 @@ I'm **Dhairya N Panchal** — a Linux Engineer and DevOps enthusiast passionate 
 
 I'm currently **open to entry-level DevOps / Linux / Cloud roles**. Feel free to reach out!
 
-- 🌐 **Portfolio:** [panchaldhairya16.github.io/Portfolio-DhairyaPanchal](https://panchaldhairya16.github.io/Portfolio-DhairyaPanchal/)
-- 💼 **LinkedIn:** [linkedin.com/in/your-profile](https://linkedin.com/in/) *(update link)*
-- 📧 **Email:** your@email.com *(update)*
+- 🌐 **Portfolio:** https://portfolio-dhairya-theta.vercel.app/
+- 💼 **LinkedIn:** https://www.linkedin.com/in/dhairya-panchal-800845351/
+- 📧 **Email:** panchaldhairya6464@gmail.com
 - 🐙 **GitHub:** [@panchaldhairya16](https://github.com/panchaldhairya16)
 
 ---
