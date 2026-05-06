@@ -10,7 +10,7 @@
 
 ## 👋 About Me
 
-I'm **Dhairya N Panchal (DNP)** — a Linux Engineer and DevOps enthusiast passionate about infrastructure automation, containerization, and cloud operations. I specialize in building reliable, production-grade systems using open-source tooling, with hands-on experience across AWS and Azure environments.
+I'm **Dhairya N Panchal ** — a Linux Engineer and DevOps enthusiast passionate about infrastructure automation, containerization, and cloud operations. I specialize in building reliable, production-grade systems using open-source tooling, with hands-on experience across AWS and Azure environments.
 
 - 🎓 Pursuing **B.Sc. IT**
 - 🏅 **RHCSA Certified** (Red Hat Certified System Administrator)
