@@ -259,47 +259,123 @@
 
   /* PROJECTS */
   .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  /* Featured (full-width) card */
+  .project-card.featured { grid-column: 1 / -1; }
+
   .project-card {
     background: var(--bg2);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 28px;
-    transition: border-color 0.2s, transform 0.2s;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
     position: relative; overflow: hidden;
+    display: flex; flex-direction: column; gap: 0;
   }
   .project-card::before {
     content: '';
     position: absolute; top: 0; left: 0; right: 0;
     height: 2px;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
-    opacity: 0; transition: opacity 0.2s;
+    opacity: 0; transition: opacity 0.25s;
   }
-  .project-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-3px); }
+  .project-card:hover {
+    border-color: rgba(255,255,255,0.18);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  }
   .project-card:hover::before { opacity: 1; }
-  .project-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--muted);
-    margin-bottom: 12px;
+
+  /* Card top row: category + status badge */
+  .project-card-top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px; flex-wrap: wrap; gap: 8px;
   }
+  .project-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: var(--muted);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  /* Status badges */
+  .status-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    padding: 3px 10px; border-radius: 100px;
+    display: inline-flex; align-items: center; gap: 5px;
+    letter-spacing: 0.04em;
+  }
+  .status-badge::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; flex-shrink: 0;
+  }
+  .status-completed {
+    color: #4ade80;
+    background: rgba(74,222,128,0.1);
+    border: 1px solid rgba(74,222,128,0.25);
+  }
+  .status-completed::before { background: #4ade80; }
+  .status-wip {
+    color: var(--accent);
+    background: rgba(232,255,87,0.08);
+    border: 1px solid rgba(232,255,87,0.2);
+  }
+  .status-wip::before { background: var(--accent); animation: pulse 2s infinite; }
+
   .project-name {
     font-family: 'Syne', sans-serif;
-    font-size: 19px; font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 18px; font-weight: 700;
+    margin-bottom: 10px; line-height: 1.3;
   }
-  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .project-desc {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.75; margin-bottom: 18px; flex: 1;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
   .project-tag {
     font-family: 'DM Mono', monospace;
     font-size: 10px; color: var(--accent2);
     background: rgba(87,212,255,0.08);
     border: 1px solid rgba(87,212,255,0.2);
-    padding: 3px 8px; border-radius: 4px;
+    padding: 3px 9px; border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .project-tag:hover {
+    background: rgba(87,212,255,0.16);
+    color: var(--accent2);
   }
   [data-theme="light"] .project-tag {
     color: #005f9e;
     background: rgba(0,95,158,0.07);
     border-color: rgba(0,95,158,0.2);
   }
+
+  /* Card links row */
+  .project-links {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-top: auto; padding-top: 4px;
+  }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .project-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(232,255,87,0.05);
+  }
+  .project-link.demo:hover {
+    color: var(--accent2);
+    border-color: var(--accent2);
+    background: rgba(87,212,255,0.05);
+  }
+  [data-theme="light"] .project-link:hover { background: rgba(42,122,0,0.05); }
+  [data-theme="light"] .project-link.demo:hover { background: rgba(0,95,158,0.05); }
 
   /* SKILLS */
   .skills-categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -387,6 +463,9 @@
     .about-grid { grid-template-columns: 1fr; }
     .exp-item { grid-template-columns: 1fr; gap: 12px; }
     .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: auto; }
+    .project-links { flex-direction: column; }
+    .project-link { justify-content: center; }
     .skills-categories { grid-template-columns: 1fr; }
     .certs-grid { grid-template-columns: 1fr; }
   }
@@ -538,21 +617,107 @@
   <h2 class="fade-in">Some things I've built.</h2>
   <div class="projects-grid" style="margin-top: 48px;">
 
+    <!-- 1: Jenkins CI/CD — Featured full-width -->
+    <div class="project-card featured fade-in">
+      <div class="project-card-top">
+        <span class="project-category">Featured · CI/CD &amp; Automation</span>
+        <span class="status-badge status-completed">Completed</span>
+      </div>
+      <div class="project-name">Host Static Website Using Jenkins — CI/CD Pipeline</div>
+      <p class="project-desc">Automated end-to-end deployment of a static website using Jenkins pipelines. Configured a multi-stage CI/CD workflow — from source checkout and build to automated deployment on a Linux server. Demonstrates real-world DevOps practices including Jenkinsfile scripting, webhook triggers, and pipeline-as-code methodology.</p>
+      <div class="project-tags">
+        <span class="project-tag">Jenkins</span>
+        <span class="project-tag">CI/CD</span>
+        <span class="project-tag">Pipeline-as-Code</span>
+        <span class="project-tag">Bash</span>
+        <span class="project-tag">Linux</span>
+        <span class="project-tag">GitHub Webhooks</span>
+        <span class="project-tag">Automation</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/panchaldhairya16/Host-Static-Website-Using-Jenkins" target="_blank" rel="noopener" class="project-link">
+          ↗ GitHub Repo
+        </a>
+      </div>
+    </div>
+
+    <!-- 2: ELK Stack Monitoring -->
     <div class="project-card fade-in">
-      <div class="project-label">Featured · Infrastructure</div>
+      <div class="project-card-top">
+        <span class="project-category">Observability · Azure</span>
+        <span class="status-badge status-completed">Completed</span>
+      </div>
+      <div class="project-name">Real-Time Infrastructure Monitoring — ELK Stack on Azure VM</div>
+      <p class="project-desc">Set up a full observability stack on Azure VM using Elasticsearch, Logstash, Kibana, and Filebeat to monitor system and application logs in real time. Configured log pipelines, index patterns, and custom Kibana dashboards for infrastructure health visibility.</p>
+      <div class="project-tags">
+        <span class="project-tag">Elasticsearch</span>
+        <span class="project-tag">Logstash</span>
+        <span class="project-tag">Kibana</span>
+        <span class="project-tag">Filebeat</span>
+        <span class="project-tag">Azure VM</span>
+        <span class="project-tag">Linux</span>
+        <span class="project-tag">Log Monitoring</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/panchaldhairya16/Real-Time-Infrastructure-Monitoring-with-Elasticsearch-Logstash-Kibana-Filebeat-on-Azure-VM" target="_blank" rel="noopener" class="project-link">
+          ↗ GitHub Repo
+        </a>
+      </div>
+    </div>
+
+    <!-- 3: Grafana + Prometheus on Azure VM -->
+    <div class="project-card fade-in">
+      <div class="project-card-top">
+        <span class="project-category">Monitoring · DevOps</span>
+        <span class="status-badge status-completed">Completed</span>
+      </div>
+      <div class="project-name">Deploy Website on Azure VM + Grafana &amp; Prometheus</div>
+      <p class="project-desc">Deployed a website on an Azure VM alongside a full metrics monitoring stack using Grafana and Prometheus. Configured Prometheus scrape targets, set up Grafana dashboards for CPU, memory, and network metrics, and exposed the application with public IP and NSG rules.</p>
+      <div class="project-tags">
+        <span class="project-tag">Grafana</span>
+        <span class="project-tag">Prometheus</span>
+        <span class="project-tag">Azure VM</span>
+        <span class="project-tag">Linux</span>
+        <span class="project-tag">Metrics</span>
+        <span class="project-tag">NSG</span>
+        <span class="project-tag">Dashboards</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/panchaldhairya16/Deploy-Website-on-Azure-VM-Install-Grafana-Prometheus" target="_blank" rel="noopener" class="project-link">
+          ↗ GitHub Repo
+        </a>
+      </div>
+    </div>
+
+    <!-- 4: Podman on Azure VM -->
+    <div class="project-card fade-in">
+      <div class="project-card-top">
+        <span class="project-category">Infrastructure · Cloud</span>
+        <span class="status-badge status-completed">Completed</span>
+      </div>
       <div class="project-name">Website Hosting via Podman on Azure VM</div>
-      <p class="project-desc">Deployed a containerized static website on Azure VM with public IP access, firewall rules, and NSG configurations. Configured Podman port mapping to expose the app over the internet, simulating a real production deployment.</p>
+      <p class="project-desc">Deployed a containerized static website on Azure VM with public IP access, firewall rules, and NSG configurations. Configured Podman port mapping to expose the app over the internet, simulating a real production deployment workflow.</p>
       <div class="project-tags">
         <span class="project-tag">Linux</span>
         <span class="project-tag">Podman</span>
         <span class="project-tag">Azure VM</span>
         <span class="project-tag">NSG</span>
         <span class="project-tag">Networking</span>
+        <span class="project-tag">Containers</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/panchaldhairya16" target="_blank" rel="noopener" class="project-link">
+          ↗ GitHub Profile
+        </a>
       </div>
     </div>
 
+    <!-- 5: Tech-Meet -->
     <div class="project-card fade-in">
-      <div class="project-label">Featured · Full Stack</div>
+      <div class="project-card-top">
+        <span class="project-category">Full Stack · Web Dev</span>
+        <span class="status-badge status-completed">Completed</span>
+      </div>
       <div class="project-name">Tech-Meet — Event Management System</div>
       <p class="project-desc">Built a full-stack web platform for college event reviews with CRUD operations, form validation, and relational database design. Clean UI with backend PHP/MySQL powering the entire event management lifecycle.</p>
       <div class="project-tags">
@@ -561,6 +726,11 @@
         <span class="project-tag">PHP</span>
         <span class="project-tag">MySQL</span>
         <span class="project-tag">CRUD</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/panchaldhairya16" target="_blank" rel="noopener" class="project-link">
+          ↗ GitHub Profile
+        </a>
       </div>
     </div>
 
